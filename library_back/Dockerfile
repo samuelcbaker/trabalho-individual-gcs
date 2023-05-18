@@ -1,15 +1,9 @@
-FROM python:3.8.12-bullseye
+FROM python:latest
 
-COPY . .
+COPY . /app
 
-RUN pip3 install --upgrade pip
-
-RUN pip3 install -r requirements.txt
+WORKDIR /app
 
 EXPOSE 8000
 
-RUN python manage.py makemigrations
-
-RUN python manage.py migrate
-
-RUN python manage.py runserver
+CMD ["/bin/bash","-c","./start.sh"]
