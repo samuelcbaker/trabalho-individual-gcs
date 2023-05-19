@@ -1,20 +1,13 @@
-# Use a imagem base do Node.js
-FROM node:14-alpine
-
-# Defina o diretório de trabalho dentro do contêiner
+# Estágio de construção
+FROM node:14-alpine as build-stage
 WORKDIR /app
-
-# Copie o arquivo package.json e o package-lock.json para o diretório de trabalho
 COPY package*.json ./
-
-# Instale as dependências do projeto
 RUN npm install
-
-# Copie o código fonte para o diretório de trabalho
 COPY . .
+RUN npm run build
 
-# Exponha a porta do servidor da aplicação
-EXPOSE 3000
-
-# Inicie o servidor da aplicação
-CMD ["npm", "start"]
+# Estágio de produção (apenas para servir os arquivos estáticos)
+FROM nginx:alpine as production-stage
+COPY --from=build-stage /app/build /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
