@@ -10,7 +10,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - "5432:5432"
-  app:
+  back:
     build:
       context: ./library_back
       dockerfile: Dockerfile
@@ -19,3 +19,13 @@ services:
       - 8000:8000
     depends_on:
       - db
+  front:
+    build:
+      context: ./library_front
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - back
