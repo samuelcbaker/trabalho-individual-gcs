@@ -8,7 +8,7 @@ jobs:
     executor: node/default
     steps:
       - checkout:
-          path: ~/travel-friends
+          path: ~/library_front
       - node/install-packages:
           pkg-manager: yarn
       - run:
