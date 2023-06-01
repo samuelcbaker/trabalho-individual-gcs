@@ -32,7 +32,7 @@ const Donate = () => {
     }
   }
 
-  const dependency = useMemo(() => sessionStorage.getItem('app-token'));
+  const dependency = sessionStorage.getItem('app-token');
 
   useCallback(() => {
     createBook();
