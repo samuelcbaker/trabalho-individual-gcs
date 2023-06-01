@@ -36,6 +36,7 @@ const Donate = () => {
 
   useCallback(() => {
     createBook();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dependency]);
 
   return (
