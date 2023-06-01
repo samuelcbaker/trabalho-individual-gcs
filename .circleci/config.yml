@@ -15,7 +15,6 @@ jobs:
           command: yarn test
           name: Run tests
   test_back:
-    executor: python/default
     working_directory: ~/trabalho-individual-gcs/library_back
     docker:
       - image: "circleci/python:3.6.4"
