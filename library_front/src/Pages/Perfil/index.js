@@ -12,9 +12,11 @@ const Perfil = () => {
           .then((response) => setBooks(response?.data));
       };
 
+    const dependency = sessionStorage.getItem('app-token');
+
     useEffect(() => {
         resBooks();
-      }, [sessionStorage.getItem('app-token')]);
+      }, [dependency]);
 
       const listBooks = books.map((book) =>
         <Book

@@ -32,9 +32,12 @@ const Donate = () => {
     }
   }
 
+  const dependency = sessionStorage.getItem('app-token');
+
   useCallback(() => {
     createBook();
-  }, [sessionStorage.getItem('app-token')]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dependency]);
 
   return (
     <Background>
