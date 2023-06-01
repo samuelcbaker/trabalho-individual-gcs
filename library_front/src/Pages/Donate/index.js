@@ -32,11 +32,9 @@ const Donate = () => {
     }
   }
 
-  const afterCreateBook = () => sessionStorage.getItem('app-token');
-
   useCallback(() => {
     createBook();
-  }, [afterCreateBook]);
+  }, [sessionStorage.getItem('app-token')]);
 
   return (
     <Background>
